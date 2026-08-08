@@ -1,16 +1,16 @@
 # file = open("filename.txt", "mode")
 
-file = open("filename1.txt","r")
+file = open("../textFiles/filename1.txt", "r")
 print(file.read())
 file.close()
 
 # Writes data to a file.If the file exists, all previous data is deleted.
-file = open("filename1.txt","w")
+file = open("../textFiles/filename1.txt", "w")
 (file.write("july is also done"))
 file.close()
 
 # 3. Append Mode (a) Adds new data to the end of the file.
-file = open("filename1.txt","a")
+file = open("../textFiles/filename1.txt", "a")
 file.write("\nNever mind")
 file.close()
 

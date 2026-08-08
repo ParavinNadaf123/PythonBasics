@@ -200,7 +200,7 @@
 #
 #     print(freq_of_word)
 # Write a Python program to find the most frequently occurring word in a file.
-with open("filename4.txt","r") as f:
+with open("../textFiles/filename4.txt", "r") as f:
     data = f.read()
     words = data.split()
     freq={}
@@ -223,7 +223,7 @@ with open("filename4.txt","r") as f:
     print("Most frequent word:", most_common_word)
     print("Frequency:", highest_count)
 # Write a Python program to display the top five most frequently occurring words in a file.
-with open("filename4.txt", "r") as f:
+with open("../textFiles/filename4.txt", "r") as f:
     data = f.read()
 
 # Convert text into words

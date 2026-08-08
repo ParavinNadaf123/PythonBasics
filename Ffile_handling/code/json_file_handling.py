@@ -7,7 +7,7 @@
 
 import json
 
-with open("employees.json", "r") as f:
+with open("../json files/employees.json", "r") as f:
     data = json.load(f)
 
 for employee in data:
@@ -15,16 +15,16 @@ for employee in data:
 
 
 # Convert the contents of a text file into a JSON file.
-with open("filename4.txt","r") as f:
+with open("../textFiles/filename4.txt", "r") as f:
   data = f.read()
   json_data = {"content": data}
 
-with open("output.json","w") as json_file:
+with open("../json files/output.json", "w") as json_file:
     json.dump(json_data,json_file,indent=4)
 
 print("test file is converted in to jason")
 # Read an API response stored in a JSON file and validate specific field values.
-with open("filename1.txt","r") as f:
+with open("../textFiles/filename1.txt", "r") as f:
     data = f.read()
 
     expected = {
@@ -42,7 +42,7 @@ response = requests.get(url)
 if response.status_code == 200:
     data = response.json()
 
-    with open("api_response.json","w") as file:
+    with open("../json files/api_response.json", "w") as file:
         json.dump(data,file,indent=4)
 
     print("Api response saved successfully")
@@ -51,10 +51,10 @@ else:
 
 
 # Compare two JSON files and identify differences.
-with open("file1.json","r") as f1:
+with open("../json files/file1.json", "r") as f1:
     data1 = json.load(f1)
 
-with open("file2.json","r") as f2:
+with open("../json files/file2.json", "r") as f2:
     data2 = json.load(f2)
 
 all_keys = set(data1.keys()).union(data2.keys())
@@ -72,7 +72,7 @@ for key in all_keys:
 
 import json
 
-with open("config.json", "r") as file:
+with open("../json files/config.json", "r") as file:
     config = json.load(file)
 
 print("Application Settings")
@@ -87,7 +87,7 @@ print("Timeout  :", config["timeout"])
 import json
 
 def read_config():
-    with open("config.json", "r") as file:
+    with open("../json files/config.json", "r") as file:
         return json.load(file)
 
 config = read_config()

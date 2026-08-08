@@ -71,17 +71,17 @@ else:
 
 # Write a Python program to write a list of strings into a file (one string per line).
 name = ["pari","lata","popo","lala"]
-with open("filename2.txt","a") as f:
+with open("../textFiles/filename2.txt", "a") as f:
     for n in name:
         f.write("\n"+ n)
 
-with open("filename2.txt","r") as f:
+with open("../textFiles/filename2.txt", "r") as f:
     print(f.read())
 
 # Write a Python program to copy the contents of one file into another file.
 
-with open("filename1.txt","r") as scr:
-    with open("filename2.txt","w") as dest:
+with open("../textFiles/filename1.txt", "r") as scr:
+    with open("../textFiles/filename2.txt", "w") as dest:
         for line in scr:
             dest.write(line)
 
@@ -90,27 +90,27 @@ print("The file copied successfully")
 # Write a Python program to rename a file.
 import os
 old_file = "Newfile.txt"
-new_file = "filename3.txt"
+new_file = "../textFiles/filename3.txt"
 if os.path.exists(old_file):
-    os.rename("Newfile.txt", "filename3.txt")
+    os.rename("Newfile.txt", "../textFiles/filename3.txt")
 else:
     print("File not found")
 
 # Write a Python program to delete a file if it exists.
-if os.path.exists("filename3.txt"):
-    os.remove("filename3.txt")
+if os.path.exists("../textFiles/filename3.txt"):
+    os.remove("../textFiles/filename3.txt")
 else:
     print("File not found")
 
 
 # Write a Python program to display the size of a file in bytes.
-if os.path.exists("filename1.txt"):
-    filesize = os.path.getsize("filename1.txt")
+if os.path.exists("../textFiles/filename1.txt"):
+    filesize = os.path.getsize("../textFiles/filename1.txt")
     print(filesize)
 else:
     print("file not found")
 
 
 # Write a Python program using with open() to automatically close a file after reading.
-with open("filename1.txt","r") as f:
+with open("../textFiles/filename1.txt", "r") as f:
      print(f.read())

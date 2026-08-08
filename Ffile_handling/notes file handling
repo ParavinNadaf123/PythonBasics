@@ -1,0 +1,409 @@
+What is File Handling?
+
+File Handling is the process of creating, opening, reading,
+ writing, appending, and closing files using Python.
+
+It allows your program to store data permanently instead of keeping it only in memory.
+
+Real-life examples
+Saving student records
+Writing application logs
+Reading configuration files
+Generating reports
+Storing test results in QA Automation
+
+
+Basic Steps in File Handling
+Open File
+     ↓
+Read / Write / Append
+     ↓
+Close File
+
+
+Syntax
+file = open("filename.txt", "mode")
+
+Example:
+
+file = open("data.txt", "r")
+File Modes
+Mode	Meaning
+"r"	Read file
+"w"	Write (creates new file or overwrites existing)
+"a"	Append (adds data at the end)
+"x"	Create a new file (fails if file already exists)
+1. Read Mode (r)
+
+Reads the contents of a file.
+
+file = open("data.txt", "r")
+
+print(file.read())
+
+file.close()
+2. Write Mode (w)
+
+Writes data to a file.
+
+If the file exists, all previous data is deleted.
+
+file = open("data.txt", "w")
+
+file.write("Hello Python")
+
+file.close()
+3. Append Mode (a)
+
+Adds new data to the end of the file.
+
+file = open("data.txt", "a")
+
+file.write("\nWelcome")
+
+file.close()
+
+If the file contains
+
+Hello Python
+
+After append
+
+Hello Python
+Welcome
+4. Create File (x)
+
+Creates a new file.
+
+file = open("newfile.txt", "x")
+
+file.close()
+
+If the file already exists
+
+FileExistsError
+Reading Methods
+read()
+
+Reads the entire file.
+
+file = open("data.txt", "r")
+
+print(file.read())
+
+file.close()
+readline()
+
+Reads one line.
+
+file = open("data.txt", "r")
+
+print(file.readline())
+
+file.close()
+readlines()
+
+Reads all lines into a list.
+
+file = open("data.txt", "r")
+
+print(file.readlines())
+
+file.close()
+
+Output
+
+['Hello\n', 'Python\n']
+Closing a File
+file.close()
+
+Always close the file after use to free system resources.
+
+
+Using with (Recommended)
+
+The with statement automatically closes the file.
+
+with open("data.txt", "r") as file:
+    print(file.read())
+
+No need to write
+
+file.close()
+File Handling with Exception Handling
+try:
+    file = open("data.txt", "r")
+    print(file.read())
+
+except FileNotFoundError:
+    print("File not found!")
+
+finally:
+    print("File operation completed")
+Interview Questions
+Q1. What is file handling?
+
+Reading, writing, creating, appending, and managing files using Python.
+
+Q2. Difference between w and a?
+w	a
+Overwrites the file	Adds data to the end
+Creates file if not present	Creates file if not present
+Q3. Difference between read() and readline()?
+
+read()
+
+Reads the entire file.
+
+readline()
+
+Reads only one line.
+Q4. Why use with open()?
+Automatically closes the file.
+Cleaner and safer code.
+Prevents resource leaks.
+Summary
+Method	Purpose
+open()	Open a file
+read()	Read entire file
+readline()	Read one line
+readlines()	Read all lines into a list
+write()	Write to a file
+append() ("a" mode)	Add data to the end
+close()	Close the file
+with open()	Automatically opens and closes the file
+💡 For Python interviews, focus on:
+File modes (r, w, a, x)
+read(), readline(), readlines()
+write()
+with open()
+Handling FileNotFoundError
+The importance of close() or using with
+
+1. Generate Summary Report — PASS & FAIL
+Approach
+Open automation.log.
+Read the file line by line.
+Check for PASS.
+Check for FAIL.
+Increase the respective counter.
+Calculate total test cases.
+Write the result to test_report.txt.
+Code
+from pathlib import Path
+
+
+# Project paths
+BASE_DIR = Path(__file__).resolve().parent
+
+LOG_FILE = BASE_DIR / "logs" / "automation.log"
+REPORT_DIR = BASE_DIR / "reports"
+REPORT_FILE = REPORT_DIR / "test_report.txt"
+
+
+# Create reports folder
+REPORT_DIR.mkdir(exist_ok=True)
+
+
+def generate_summary_report():
+
+    pass_count = 0
+    fail_count = 0
+
+    # Read automation log
+    with open(LOG_FILE, "r") as file:
+
+        for line in file:
+
+            if " - PASS" in line:
+                pass_count += 1
+
+            elif " - FAIL" in line:
+                fail_count += 1
+
+    total_tests = pass_count + fail_count
+
+    # Create report
+    report = (
+        "TEST EXECUTION SUMMARY\n"
+        "======================\n"
+        f"Total Test Cases : {total_tests}\n"
+        f"PASS             : {pass_count}\n"
+        f"FAIL             : {fail_count}\n"
+    )
+
+    # Write report
+    with open(REPORT_FILE, "w") as file:
+        file.write(report)
+
+    print(report)
+
+
+generate_summary_report()
+Output
+TEST EXECUTION SUMMARY
+======================
+Total Test Cases : 5
+PASS             : 3
+FAIL             : 2
+test_report.txt
+TEST EXECUTION SUMMARY
+======================
+Total Test Cases : 5
+PASS             : 3
+FAIL             : 2
+2. Store Failed Test Case Names in a Separate File
+Approach
+Open automation.log.
+Read each line.
+Find lines containing FAIL.
+Extract the test case ID and name.
+Write them to failed_tests.txt.
+Code
+def store_failed_tests():
+
+    failed_tests = []
+
+    # Read automation log
+    with open(LOG_FILE, "r") as file:
+
+        for line in file:
+
+            if " - FAIL" in line:
+
+                # Example:
+                # 2026-08-08 10:15:22 - ERROR - TC003 - Search Test - FAIL
+
+                parts = line.strip().split(" - ")
+
+                test_id = parts[2]
+                test_name = parts[3]
+
+                failed_tests.append(
+                    f"{test_id} - {test_name}"
+                )
+
+    # Write failed tests
+    with open(REPORT_DIR / "failed_tests.txt", "w") as file:
+
+        for test in failed_tests:
+            file.write(test + "\n")
+
+    print("Failed test cases stored successfully.")
+
+
+store_failed_tests()
+failed_tests.txt
+TC003 - Search Test
+TC005 - Profile Test
+Better: Keep Both in One Program
+
+For your practice project, I recommend this arrangement:
+
+from pathlib import Path
+
+
+# ==========================================================
+# PATH CONFIGURATION
+# ==========================================================
+
+BASE_DIR = Path(__file__).resolve().parent
+
+LOG_FILE = BASE_DIR / "logs" / "automation.log"
+REPORT_DIR = BASE_DIR / "reports"
+
+SUMMARY_REPORT = REPORT_DIR / "test_report.txt"
+FAILED_TESTS_FILE = REPORT_DIR / "failed_tests.txt"
+
+
+# Create reports folder
+REPORT_DIR.mkdir(exist_ok=True)
+
+
+# ==========================================================
+# GENERATE SUMMARY REPORT
+# ==========================================================
+
+def generate_summary_report():
+
+    pass_count = 0
+    fail_count = 0
+
+    with open(LOG_FILE, "r") as file:
+
+        for line in file:
+
+            if " - PASS" in line:
+                pass_count += 1
+
+            elif " - FAIL" in line:
+                fail_count += 1
+
+    total_tests = pass_count + fail_count
+
+    report = (
+        "TEST EXECUTION SUMMARY\n"
+        "======================\n"
+        f"Total Test Cases : {total_tests}\n"
+        f"PASS             : {pass_count}\n"
+        f"FAIL             : {fail_count}\n"
+    )
+
+    with open(SUMMARY_REPORT, "w") as file:
+        file.write(report)
+
+    print(report)
+
+
+# ==========================================================
+# STORE FAILED TEST CASES
+# ==========================================================
+
+def store_failed_tests():
+
+    with open(LOG_FILE, "r") as log_file, \
+         open(FAILED_TESTS_FILE, "w") as failed_file:
+
+        for line in log_file:
+
+            if " - FAIL" in line:
+
+                parts = line.strip().split(" - ")
+
+                test_id = parts[2]
+                test_name = parts[3]
+
+                failed_file.write(
+                    f"{test_id} - {test_name}\n"
+                )
+
+    print("Failed test cases stored successfully.")
+
+
+# ==========================================================
+# MAIN
+# ==========================================================
+
+if __name__ == "__main__":
+
+    generate_summary_report()
+
+    store_failed_tests()
+Final result
+file_handling/
+│
+├── Logging_practice.py
+│
+├── logs/
+│   └── automation.log
+│
+└── reports/
+    │
+    ├── test_report.txt
+    │
+    └── failed_tests.txt
+
+This is a better framework-style approach because
+ path configuration, report generation, failed-test handling, and
+ program execution are separated into functions rather than putting
+ everything into one long block.
