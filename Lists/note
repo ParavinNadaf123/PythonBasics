@@ -1,0 +1,13 @@
+| Method    | Purpose             |
+| --------- | ------------------- |
+| append()  | Add element         |
+| insert()  | Insert element      |
+| extend()  | Merge lists         |
+| remove()  | Remove value        |
+| pop()     | Remove by index     |
+| clear()   | Delete all elements |
+| sort()    | Sort list           |
+| reverse() | Reverse list        |
+| count()   | Count occurrences   |
+| index()   | Find position       |
+| copy()    | Copy list           |

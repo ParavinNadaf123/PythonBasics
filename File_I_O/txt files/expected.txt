@@ -1,0 +1,3 @@
+Login Test=SUCCESS
+Search Test=SUCCESS
+Checkout Test=FAIL

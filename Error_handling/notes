@@ -1,0 +1,421 @@
+Perfect 👍 Here are some commonly asked interview questions on Error Handling in Python (with short answers + examples):
+
+💡 1️⃣ What is exception handling in Python?
+
+It’s a way to handle runtime errors using try, except, finally, and raise — so the program doesn’t crash.
+
+💡 2️⃣ What happens if no exception occurs in try block?
+
+If no error occurs, the except block is skipped, and the program continues normally.
+
+try:
+    print("No error here!")
+except:
+    print("Error occurred!")
+print("Program continues...")
+
+🟢 Output:
+
+No error here!
+Program continues...
+💡 3️⃣ What is the difference between syntax error and exception?
+Syntax Error: Detected before running the code (wrong grammar).
+Exception: Happens while the code is running.
+# Syntax error example
+# print("Hello"   # missing parenthesis
+
+# Exception example
+print(10 / 0)  # ZeroDivisionError
+💡 4️⃣ Can we handle multiple exceptions?
+
+Yes, by writing multiple except blocks or grouping them in a tuple.
+
+try:
+    num = int(input("Enter number: "))
+    print(10 / num)
+except (ValueError, ZeroDivisionError) as e:
+    print("Error:", e)
+💡 5️⃣ What is the use of finally block?
+
+It runs always, even if there is an error — often used to release resources.
+
+try:
+    print(10 / 0)
+except:
+    print("Error occurred")
+finally:
+    print("This runs always")
+
+🟢 Output:
+
+Error occurred
+This runs always
+💡 6️⃣ How do you raise your own exception?
+
+Use the raise keyword.
+
+age = 15
+if age < 18:
+    raise ValueError("You must be 18 or older!")
+💡 7️⃣ What is else in exception handling?
+
+The else block runs only if no exception occurs in the try block.
+
+try:
+    num = int(input("Enter number: "))
+except ValueError:
+    print("Invalid input!")
+else:
+    print("No error! You entered:", num)
+💡 8️⃣ Can you nest try-except blocks?
+
+Yes, you can have one inside another.
+
+try:
+    try:
+        print(10 / 0)
+    except ZeroDivisionError:
+        print("Inner except handled division error")
+except Exception:
+    print("Outer except handled something else")
+
+
+
+
+🧠 1️⃣ Handle Division Error
+
+Question:
+Write a program that asks the user for two numbers and prints their division result.
+If the user enters 0 as the second number, handle the error with a message.
+
+Hint: use try–except
+
+✅ Expected Output:
+
+Enter first number: 10
+Enter second number: 0
+Error: Cannot divide by zero!
+🧠 2️⃣ Handle Invalid Input
+
+Question:
+Ask the user for an integer input and print its square.
+Handle invalid inputs (like alphabets or symbols).
+
+✅ Example:
+
+Enter a number: abc
+Error: Please enter a valid integer!
+🧠 3️⃣ Using finally
+
+Question:
+Try to open a file data.txt and read it.
+If the file doesn’t exist, handle the error.
+Print "Program completed" using finally.
+
+✅ Hint:
+
+f = open("data.txt", "r")
+🧠 4️⃣ Raise Custom Exception
+
+Question:
+Ask the user for their age.
+If the age is less than 18, raise a ValueError with the message "Not eligible to vote".
+
+✅ Example:
+
+Enter age: 15
+ValueError: Not eligible to vote
+🧠 5️⃣ Combine Multiple Exceptions
+
+Question:
+Ask the user to enter a number and divide 100 by that number.
+Handle both:
+
+ValueError (invalid input)
+ZeroDivisionError (division by zero)
+
+✅ Example Output:
+
+Enter number: zero
+Error: Invalid input!
+Enter number: 0
+Error: Division by zero!
+
+🧩 1️⃣ Handle Division Error
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print("Result:", a / b)
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero!")
+🧩 2️⃣ Handle Invalid Input
+try:
+    num = int(input("Enter a number: "))
+    print("Square:", num ** 2)
+except ValueError:
+    print("Error: Please enter a valid integer!")
+🧩 3️⃣ Using finally
+try:
+    f = open("data.txt", "r")
+    print(f.read())
+except FileNotFoundError:
+    print("Error: File not found!")
+finally:
+    print("Program completed ✅")
+🧩 4️⃣ Raise Custom Exception
+age = int(input("Enter your age: "))
+
+if age < 18:
+    raise ValueError("Not eligible to vote")
+else:
+    print("You are eligible to vote ✅")
+🧩 5️⃣ Combine Multiple Exceptions
+try:
+    num = int(input("Enter a number: "))
+    print("Result:", 100 / num)
+except ValueError:
+    print("Error: Invalid input!")
+except ZeroDivisionError:
+    print("Error: Division by zero!")
+
+Most Common Python Errors
+Error Type	When It Occurs	Example	Output
+🧩 1️⃣ SyntaxError
+
+Occurs when Python code is written incorrectly (violates syntax rules).
+
+print("Hello"   # missing closing parenthesis
+
+➡️ Output:
+
+SyntaxError: unexpected EOF while parsing
+🧩 2️⃣ NameError
+
+When you use a variable that hasn’t been defined.
+
+print(x)
+
+➡️ Output:
+
+NameError: name 'x' is not defined
+🧩 3️⃣ TypeError
+
+When an operation is performed on incompatible data types.
+
+num = 5 + "10"
+
+➡️ Output:
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+🧩 4️⃣ ValueError
+
+When the data type is correct but the value is inappropriate.
+
+num = int("abc")
+
+➡️ Output:
+
+ValueError: invalid literal for int() with base 10: 'abc'
+🧩 5️⃣ IndexError
+
+When trying to access an index that doesn’t exist in a list or tuple.
+
+nums = [1, 2, 3]
+print(nums[5])
+
+➡️ Output:
+
+IndexError: list index out of range
+🧩 6️⃣ KeyError
+
+When trying to access a non-existent key in a dictionary.
+
+person = {"name": "Pari"}
+print(person["age"])
+
+➡️ Output:
+
+KeyError: 'age'
+🧩 7️⃣ ZeroDivisionError
+
+When dividing a number by zero.
+
+print(10 / 0)
+
+➡️ Output:
+
+ZeroDivisionError: division by zero
+🧩 8️⃣ AttributeError
+
+When trying to use an invalid method or attribute for an object.
+
+x = 10
+x.append(5)
+
+➡️ Output:
+
+AttributeError: 'int' object has no attribute 'append'
+🧩 9️⃣ FileNotFoundError
+
+When trying to open a file that doesn’t exist.
+
+f = open("abc.txt", "r")
+
+➡️ Output:
+
+FileNotFoundError: [Errno 2] No such file or directory: 'abc.txt'
+🧩 🔟 ImportError
+
+When trying to import a module that doesn’t exist.
+
+import mymodule
+
+➡️ Output:
+
+ModuleNotFoundError: No module named 'mymodule'
+✅ Quick Summary Table
+Error Type	Meaning
+SyntaxError	Wrong code syntax
+NameError	Variable not defined
+TypeError	Wrong data type operation
+ValueError	Wrong value for correct data type
+IndexError	Invalid list/tuple index
+KeyError	Invalid dictionary key
+ZeroDivisionError	Division by zero
+AttributeError	Invalid method or property used
+FileNotFoundError	Missing file
+ImportError	Missing module
+
+
+What is a FloatingPointError?
+
+A FloatingPointError happens when something goes wrong with a floating-point (decimal) calculation — for example, a math operation that produces an invalid floating-point result (like overflow or division issue).
+
+👉 By default, Python doesn’t raise this error automatically — it just returns inf (infinity) for very large numbers.
+But you can turn it on using the numpy library or handle floating-point issues manually.
+
+✅ Simple Example 1: Manual Raising
+
+You can manually raise it when a floating-point operation behaves unexpectedly.
+
+num = float('inf')  # infinity value
+
+if num == float('inf'):
+    raise FloatingPointError("Floating point overflow occurred!")
+
+🟢 Output:
+
+FloatingPointError: Floating point overflow occurred!
+✅ Example 2: With NumPy (real-world use)
+
+NumPy can actually detect floating-point errors like division by zero or overflow.
+
+import numpy as np
+
+# Turn on floating-point error checking
+np.seterr(all='raise')
+
+try:
+    a = np.array([1.0])
+    b = np.array([0.0])
+    result = a / b  # causes divide-by-zero
+except FloatingPointError:
+    print("❌ Floating point division by zero detected!")
+
+🟢 Output:
+
+❌ Floating point division by zero detected!
+🧠 Summary
+Concept	Meaning
+Error Name	FloatingPointError
+When It Occurs	When a floating-point operation fails (overflow, division by zero, invalid result)
+Default Behavior	Not raised automatically — needs to be handled or manually triggered
+Common Use Case	In scientific/financial calculations using NumPy or math-heavy code
+
+
+finally is mainly used for cleanup tasks, such as:
+
+Closing files
+Closing database connections
+Closing network connections
+Releasing resources
+Printing a final message
+
+No matter whether an exception occurs or not, the finally block always runs
+(except in rare cases like the program being forcibly terminated
+
+1️⃣ except Exception
+
+Exception is the parent class of most built-in exceptions in Python.
+
+It catches any unexpected error that is not handled by specific except blocks.
+
+Example:
+
+try:
+    num = 10 / 0
+
+except Exception:
+    print("Something went wrong")
+
+
+🔹 raise (Raising Exceptions)
+What is raise?
+
+raise is used to manually create (throw) an exception when a condition is not valid.
+
+Instead of waiting for Python to generate an error, you generate it yourself.
+
+Syntax
+
+raise ExceptionType("Error message")
+
+Common Exceptions You Can Raise
+raise ValueError("Invalid value")
+raise TypeError("Invalid type")
+raise ZeroDivisionError("Cannot divide by zero")
+raise FileNotFoundError("File not found")
+raise Exception("Something went wrong")
+
+Difference Between Python Raising an Exception and You Raising One
+Python raises it automatically
+print(10 / 0)
+
+Output:
+
+ZeroDivisionError: division by zero
+You raise it manually
+num = 0
+
+if num == 0:
+    raise ZeroDivisionError("Cannot divide by zero.")
+🎯 Error Handling Roadmap
+Error Handling
+│
+├── try          ✅
+├── except       ✅
+├── finally      ✅
+├── raise        ⬅️ Left (learn this)
+└── else         ⭐ Bonus (recommended)
+⭐ Bonus: else
+
+Although your notes didn't mention it, else is also part of Python's exception handling and is frequently asked in interviews.
+
+try:
+    num = int(input("Enter a number: "))
+except ValueError:
+    print("Invalid input")
+else:
+    print("You entered:", num)
+finally:
+    print("Program finished")
+
+How it works:
+
+try → Code that might fail.
+except → Runs if an error occurs.
+else → Runs only if no error occurs.
+finally → Runs always, whether there was an error or not.
+
+After learning raise and else, you'll have covered the
+complete basics of Python error handling that are commonly expected in interviews.

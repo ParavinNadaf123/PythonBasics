@@ -1,0 +1,123 @@
+🧩 1. Functions
+✅ Definition:
+
+A function is a reusable block of code that performs a specific task.
+
+📘 Syntax:
+def function_name(parameters):
+    """Docstring - describes what the function does"""
+    # code block
+    return value
+📍 Example 1: Defining & Calling a Function
+def greet():
+    """This function prints a greeting message."""
+    print("Hello! Welcome to Python.")
+
+greet()  # calling the function
+📍 Example 2: Function with Parameters
+def add(a, b):
+    """Returns the sum of two numbers."""
+    return a + b
+
+result = add(5, 3)
+print(result)  # Output: 8
+📍 Example 3: Variable Scope
+Local variable: Used only inside the function
+Global variable: Accessible everywhere
+x = 10  # global
+
+def show():
+    x = 5  # local
+    print("Inside function:", x)
+
+show()
+print("Outside function:", x)
+
+Output:
+
+Inside function: 5
+Outside function: 10
+📍 Example 4: Using Docstrings
+def square(num):
+    """Takes a number and returns its square."""
+    return num ** 2
+
+print(square.__doc__)  # Shows docstring
+🎯 2. Function Arguments & Return Values
+
+Functions can receive data using arguments and send data back using return values.
+
+✅ 1. Positional Arguments
+
+Values are passed in the same order as parameters.
+
+def info(name, age):
+    print(f"{name} is {age} years old")
+
+info("Pari", 32)
+✅ 2. Keyword Arguments
+
+Specify the parameter name explicitly.
+
+info(age=32, name="Pari")
+✅ 3. Default Arguments
+
+Provide a default value for parameters.
+
+def greet(name="Guest"):
+    print(f"Hello {name}!")
+
+greet()         # uses default
+greet("Pari")   # overrides default
+✅ 4. Arbitrary Arguments
+
+When you don’t know how many arguments you’ll get:
+
+*args → for multiple positional arguments
+**kwargs → for multiple keyword arguments
+def add_all(*nums):
+    return sum(nums)
+
+print(add_all(2, 4, 6))  # Output: 12
+def show_details(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+show_details(name="Pari", age=32, city="Pune")
+✅ 5. Return Values
+
+Functions can send data back using return.
+
+def multiply(a, b):
+    return a * b
+
+result = multiply(4, 5)
+print(result)  # Output: 20
+
+
+A function is a block of reusable code that performs a specific task.
+# # It helps make code modular, organized, and less repetitive.
+# def function_name(parameters):
+#     # code block
+#     return s
+#
+#
+# # 2. Types of Functions
+# # a) Built-in Functions
+# #
+# # Already available in Python.
+# # ✅ Examples: len(), print(), type(), sum(), max()
+#
+# print(len("Hello"))      # 5
+# print(sum([1, 2, 3]))    # 6
+# #
+# # b) User-Defined Functions
+# #
+# # Created by the programmer using def.
+
+
+reduce(
+    lambda accumulator, item: accumulator + value_from_item,
+    iterable,
+    0
+)

@@ -1,0 +1,333 @@
+Inheritance in Python (Beginner Friendly)
+
+Inheritance means one class can use properties and methods of another class.
+
+Think like this:
+
+Parent class = common things
+Child class = special things + parent things
+
+Real-life example:
+
+Animal → can eat, sleep
+Dog → can eat, sleep (from Animal) + bark
+
+So Dog does not need to write eat() and sleep() again.
+
+Why use inheritance?
+
+✅ Reuse code
+✅ Reduce duplicate code
+✅ Easy maintenance
+✅ Better structure
+
+Basic Syntax
+class Parent:
+    # parent code
+
+class Child(Parent):
+    # child code
+
+Child gets everything from Parent.
+
+Example 1: Simple Inheritance
+class Animal:
+
+    def eat(self):
+        print("Animal is eating")
+
+    def sleep(self):
+        print("Animal is sleeping")
+
+
+class Dog(Animal):
+    def bark(self):
+        print("Dog is barking")
+
+
+d = Dog()
+
+d.eat()
+d.sleep()
+d.bark()
+Output:
+Animal is eating
+Animal is sleeping
+Dog is barking
+What happened?
+
+Dog class has:
+
+eat() → inherited from Animal
+sleep() → inherited from Animal
+bark() → own method
+Example 2: Using constructor (init)
+class Person:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Student(Person):
+    def show(self):
+        print("Name is", self.name)
+
+
+s = Student("Pari")
+s.show()
+
+Output:
+
+Name is Pari
+
+Here Student inherits name from Person.
+
+super() in inheritance
+
+Used to call parent class constructor or methods.
+
+Example:
+
+class Person:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Student(Person):
+
+    def __init__(self, name, marks):
+        super().__init__(name)
+        self.marks = marks
+
+    def display(self):
+        print(self.name, self.marks)
+
+
+s = Student("Pari", 95)
+s.display()
+
+Output:
+
+Pari 95
+
+Without super(), parent constructor will not run.
+
+Types of Inheritance
+1. Single Inheritance
+
+One parent → one child
+
+A → B
+
+Example:
+
+class A:
+    pass
+
+class B(A):
+    pass
+2. Multilevel Inheritance
+
+Parent → Child → Grandchild
+
+A → B → C
+
+Example:
+
+class A:
+    def show(self):
+        print("A")
+
+class B(A):
+    pass
+
+class C(B):
+    pass
+
+obj = C()
+obj.show()
+3. Multiple Inheritance
+
+One child, multiple parents
+
+A + B → C
+
+Example:
+
+class Father:
+    def skill1(self):
+        print("Driving")
+
+class Mother:
+    def skill2(self):
+        print("Cooking")
+
+class Child(Father, Mother):
+    pass
+
+c = Child()
+c.skill1()
+c.skill2()
+Method Overriding
+
+Child can change parent method.
+
+class Animal:
+    def sound(self):
+        print("Animal sound")
+
+
+class Dog(Animal):
+    def sound(self):
+        print("Bark")
+
+
+d = Dog()
+d.sound()
+
+Output:
+
+Bark
+
+Parent method replaced by child method.
+
+Practice Questions
+Easy
+
+1. Vehicle and Car
+Create:
+
+Vehicle → start()
+Car → drive()
+
+Call both methods.
+
+2. Employee and Developer
+Create:
+
+Employee → name
+Developer → language
+
+Print both.
+
+3. Animal and Cat
+Parent has eat()
+Child has meow()
+
+Call both.
+
+Medium
+
+4. BankAccount and SavingsAccount
+Parent:
+
+account_holder
+
+Child:
+
+balance
+
+Use super().
+
+5. Person → Student → Monitor
+Use multilevel inheritance.
+
+Add one method in each class.
+
+Practice with overriding
+
+6. Shape and Circle
+
+Parent:
+
+draw()
+
+Child overrides it.
+
+Interview Questions
+
+Q1: What is inheritance?
+Inheritance allows one class to acquire properties and methods of another class.
+
+Q2: Why use inheritance?
+To reuse code and reduce duplication.
+
+Q3: What is super()?
+Used to access parent class methods/constructor.
+
+Q4: What is method overriding?
+Child class changing parent method implementation.
+
+Beginner tip:
+
+Remember this formula:
+
+Parent = common things
+Child = common things + extra things
+
+That is inheritance.
+
+
+super() in Inheritance — Simple Explanation
+
+super() means:
+
+👉 "Go to my parent class and use its method"
+
+Mostly used for:
+
+Calling parent constructor (__init__)
+Calling parent methods
+Why do we need super()?
+
+Imagine parent class already has some important code.
+
+Instead of rewriting it in child class, we can reuse it.
+
+Without super(), we may miss parent setup.
+
+Example 1: Without super()
+class Parent:
+
+    def __init__(self):
+        print("Parent constructor called")
+
+
+class Child(Parent):
+
+    def __init__(self):
+        print("Child constructor called")
+
+
+c = Child()
+Output:
+Child constructor called
+What happened?
+
+Parent constructor did not run.
+
+Because Child made its own __init__().
+
+Python only called Child’s constructor.
+
+Example 2: With super()
+class Parent:
+
+    def __init__(self):
+        print("Parent constructor called")
+
+
+class Child(Parent):
+
+    def __init__(self):
+        super().__init__()
+        print("Child constructor called")
+
+
+c = Child()
+Output:
+Parent constructor called
+Child constructor called
+
+Now parent constructor runs first.

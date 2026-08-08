@@ -1,0 +1,180 @@
+Polymorphism in Python (Beginner-Friendly Explanation)
+
+Meaning of Polymorphism:
+Poly = Many
+Morph = Forms
+
+So, Polymorphism means one thing behaving in many forms.
+
+In Python, the same method name can perform different actions depending on the object.
+
+Real-life example:
+
+Think of a remote control:
+
+Press power on TV → TV turns on
+Press power on AC → AC turns on
+
+Same button (power), different behavior.
+
+That is polymorphism.
+
+Types of Polymorphism in Python
+1. Method Overriding (Runtime Polymorphism)
+
+When child class changes the parent class method.
+
+Example:
+
+class Animal:
+    def sound(self):
+        print("Animal makes sound")
+
+class Dog(Animal):
+    def sound(self):
+        print("Dog barks")
+
+class Cat(Animal):
+    def sound(self):
+        print("Cat meows")
+
+d = Dog()
+c = Cat()
+
+d.sound()
+c.sound()
+
+Output:
+
+Dog barks
+Cat meows
+What happened?
+
+Same method name: sound()
+
+But different output based on object.
+
+This is polymorphism.
+
+2. Duck Typing (Python special)
+
+Python does not care about class type.
+It cares whether object has required method.
+
+Example:
+
+class Chrome:
+    def open(self):
+        print("Opening Chrome")
+
+class Firefox:
+    def open(self):
+        print("Opening Firefox")
+
+def launch(browser):
+    browser.open()
+
+c = Chrome()
+f = Firefox()
+
+launch(c)
+launch(f)
+
+Output:
+
+Opening Chrome
+Opening Firefox
+
+Here:
+
+launch() works for both objects.
+
+Why? Because both have open().
+
+This is polymorphism.
+
+3. Operator Overloading
+
+Same operator behaves differently.
+
+
+Example:
+
+print(5 + 3)          # Addition
+print("Hello " + "World")   # String join
+
+Output:
+
+8
+Hello World
+
+Same + operator, different behavior.
+
+# Same operator behaves differently.
+# Example 1: Integer Multiplication
+
+# Operator Overloading in Python
+#
+# Operator overloading means giving special meaning to operators (+, -, *, ==, <) for objects.
+#
+# Python does this using magic methods (dunder methods) like:
+#
+# __add__() → +
+# __sub__() → -
+# __mul__() → *
+# __eq__() → ==
+# __lt__() → <
+
+Polymorphism.
+
+Live QA Testing Example
+
+Imagine automation framework:
+
+class Browser:
+    def start(self):
+        print("Starting browser")
+
+class Chrome(Browser):
+    def start(self):
+        print("Starting Chrome")
+
+class Edge(Browser):
+    def start(self):
+        print("Starting Edge")
+
+def run_test(browser):
+    browser.start()
+
+run_test(Chrome())
+run_test(Edge())
+
+Output:
+
+Starting Chrome
+Starting Edge
+
+Same run_test(), different browser behavior.
+
+This is how polymorphism is used in automation frameworks like Selenium and Playwright.
+
+Simple definition for interview:
+
+Polymorphism is an OOP concept where one method or interface can have multiple behaviors based on the object calling it.
+
+Example:
+Same start() method can behave differently for Chrome and Edge.
+
+Quick difference:
+Concept	Meaning
+Inheritance	Getting properties from parent
+Encapsulation	Hiding data
+Abstraction	Hiding implementation
+Polymorphism	Same method, different behavior
+
+Shortcut to remember:
+
+Inheritance = Reuse
+Encapsulation = Protect
+Abstraction = Hide
+Polymorphism = Multiple forms

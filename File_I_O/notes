@@ -1,0 +1,60 @@
+1. Delete Temporary Files That Are Older Than Seven Days
+Python Code
+import os
+import time
+
+folder = "temp_files"      # Folder containing temporary files
+
+current_time = time.time()
+days = 7
+seconds = days * 24 * 60 * 60
+
+for file in os.listdir(folder):
+    file_path = os.path.join(folder, file)
+
+    if os.path.isfile(file_path):
+        modified_time = os.path.getmtime(file_path)
+
+        if current_time - modified_time > seconds:
+            os.remove(file_path)
+            print(f"Deleted: {file}")
+
+print("Old temporary files deleted successfully.")
+Sample Output
+Deleted: temp1.txt
+Deleted: temp2.log
+Deleted: old_report.csv
+
+Old temporary files deleted successfully.
+Explanation
+time.time() → Gets the current timestamp.
+os.path.getmtime() → Gets the file's last modified time.
+os.remove() → Deletes the file.
+The program deletes files older than 7 days.
+2. Split a Large File into Five Equal-Sized Smaller Files
+
+Suppose you have a file named large_file.txt.
+
+Python Code
+import os
+
+input_file = "large_file.txt"
+
+with open(input_file, "r") as file:
+    data = file.read()
+
+size = len(data)
+part_size = size // 5
+
+for i in range(5):
+    start = i * part_size
+
+    if i == 4:
+        end = size      # Last file gets remaining data
+    else:
+        end = (i + 1) * part_size
+
+    with open(f"part_{i+1}.txt", "w") as output:
+        output.write(data[start:end])
+
+print("File successfully split into 5 parts.")

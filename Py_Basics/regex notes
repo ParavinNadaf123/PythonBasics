@@ -1,0 +1,168 @@
+. re.findall()
+
+findall() searches the given text and returns all matches as a list.
+
+Syntax:
+
+re.findall(pattern, text)
+
+Example:
+
+import re
+
+text = "Hello Python"
+
+result = re.findall("Python", text)
+
+print(result)
+
+Output:
+
+['Python']
+2. r"" (Raw String)
+r"\b[a-zA-Z]+\b"
+
+The r means raw string.
+
+It tells Python:
+
+Treat backslashes (\) as special regex characters.
+
+Example:
+
+r"\n"
+
+means the regex sees \n, not a newline character.
+
+Regex Pattern Explanation
+
+Pattern:
+
+\b[a-zA-Z]+\b
+
+Let's divide it:
+
+3. \b → Word Boundary
+\b
+
+Means:
+
+Start or end of a word.
+
+Example:
+
+Text:
+
+Never,Never
+
+Without \b:
+
+Never,Never
+
+may be treated as one continuous string.
+
+With \b:
+
+Never , Never
+^^^^     ^^^^
+
+It separates the words.
+
+4. [a-zA-Z] → Match letters
+[a-zA-Z]
+
+Means:
+
+a-z → lowercase letters
+A-Z → uppercase letters
+
+It matches:
+
+✅ Hello
+✅ Python
+✅ NEVER
+
+It does not match:
+
+❌ 123
+❌ @#$
+
+5. + → One or more characters
++
+
+Means:
+
+Match one or more letters continuously.
+
+Example:
+
+Hello
+
+Without +:
+
+H
+
+Only one character.
+
+With +:
+
+Hello
+^^^^^
+
+Entire word is captured.
+
+6. Ending \b
+\b
+
+Marks the end of the word.
+
+Example:
+
+Hello123
+
+Regex stops at the word boundary.
+
+Example with your file
+
+Content:
+
+july is also done
+Never mind
+Get lost
+Never,Never
+
+Code:
+
+import re
+
+data = """
+july is also done
+Never mind
+Get lost
+Never,Never
+"""
+
+words = re.findall(r"\b[a-zA-Z]+\b", data)
+
+print(words)
+
+Output:
+
+[
+'july',
+'is',
+'also',
+'done',
+'Never',
+'mind',
+'Get',
+'lost',
+'Never',
+'Never'
+]
+Simple Meaning
+r"\b[a-zA-Z]+\b"
+
+means:
+
+Find every complete word that contains only alphabets.

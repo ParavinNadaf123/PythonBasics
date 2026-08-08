@@ -1,0 +1,3 @@
+Contact us at support@example.com for help.
+You can also reach admin.test@company.co.in or hr@my-site.org.
+Invalid email: user@com

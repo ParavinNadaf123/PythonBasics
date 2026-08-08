@@ -1,0 +1,181 @@
+What is File Handling?
+
+File Handling is the process of creating, opening, reading,
+ writing, appending, and closing files using Python.
+
+It allows your program to store data permanently instead of keeping it only in memory.
+
+Real-life examples
+Saving student records
+Writing application logs
+Reading configuration files
+Generating reports
+Storing test results in QA Automation
+
+
+Basic Steps in File Handling
+Open File
+     ↓
+Read / Write / Append
+     ↓
+Close File
+
+
+Syntax
+file = open("filename.txt", "mode")
+
+Example:
+
+file = open("data.txt", "r")
+File Modes
+Mode	Meaning
+"r"	Read file
+"w"	Write (creates new file or overwrites existing)
+"a"	Append (adds data at the end)
+"x"	Create a new file (fails if file already exists)
+1. Read Mode (r)
+
+Reads the contents of a file.
+
+file = open("data.txt", "r")
+
+print(file.read())
+
+file.close()
+2. Write Mode (w)
+
+Writes data to a file.
+
+If the file exists, all previous data is deleted.
+
+file = open("data.txt", "w")
+
+file.write("Hello Python")
+
+file.close()
+3. Append Mode (a)
+
+Adds new data to the end of the file.
+
+file = open("data.txt", "a")
+
+file.write("\nWelcome")
+
+file.close()
+
+If the file contains
+
+Hello Python
+
+After append
+
+Hello Python
+Welcome
+4. Create File (x)
+
+Creates a new file.
+
+file = open("newfile.txt", "x")
+
+file.close()
+
+If the file already exists
+
+FileExistsError
+Reading Methods
+read()
+
+Reads the entire file.
+
+file = open("data.txt", "r")
+
+print(file.read())
+
+file.close()
+readline()
+
+Reads one line.
+
+file = open("data.txt", "r")
+
+print(file.readline())
+
+file.close()
+readlines()
+
+Reads all lines into a list.
+
+file = open("data.txt", "r")
+
+print(file.readlines())
+
+file.close()
+
+Output
+
+['Hello\n', 'Python\n']
+Closing a File
+file.close()
+
+Always close the file after use to free system resources.
+
+
+Using with (Recommended)
+
+The with statement automatically closes the file.
+
+with open("data.txt", "r") as file:
+    print(file.read())
+
+No need to write
+
+file.close()
+File Handling with Exception Handling
+try:
+    file = open("data.txt", "r")
+    print(file.read())
+
+except FileNotFoundError:
+    print("File not found!")
+
+finally:
+    print("File operation completed")
+Interview Questions
+Q1. What is file handling?
+
+Reading, writing, creating, appending, and managing files using Python.
+
+Q2. Difference between w and a?
+w	a
+Overwrites the file	Adds data to the end
+Creates file if not present	Creates file if not present
+Q3. Difference between read() and readline()?
+
+read()
+
+Reads the entire file.
+
+readline()
+
+Reads only one line.
+Q4. Why use with open()?
+Automatically closes the file.
+Cleaner and safer code.
+Prevents resource leaks.
+Summary
+Method	Purpose
+open()	Open a file
+read()	Read entire file
+readline()	Read one line
+readlines()	Read all lines into a list
+write()	Write to a file
+append() ("a" mode)	Add data to the end
+close()	Close the file
+with open()	Automatically opens and closes the file
+💡 For Python interviews, focus on:
+File modes (r, w, a, x)
+read(), readline(), readlines()
+write()
+with open()
+Handling FileNotFoundError
+The importance of close() or using with

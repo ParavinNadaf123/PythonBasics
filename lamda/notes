@@ -1,0 +1,112 @@
+🧠 Lambda Functions in Python
+🔹 What is a Lambda Function?
+
+A lambda function is a small, anonymous function (without a name).
+It can have any number of arguments but only one expression.
+
+🔹 Syntax
+lambda arguments: expression
+🔹 Example
+add = lambda a, b: a + b
+print(add(5, 3))   # Output: 8
+🔹 Why Use Lambda Functions?
+To write short, single-line functions.
+Commonly used with map(), filter(), reduce().
+Useful in data transformation, sorting, list comprehensions, and automation scripts.
+🔹 Use Cases
+Use Case	Example	Output
+Quick addition	lambda a,b: a+b	8
+Square of number	lambda x: x**2	25
+Even check	lambda x: x%2==0	True
+String length	lambda s: len(s)	5
+🧩 map(), filter(), reduce() with Lambda
+🔸 1. map() → Applies a function to every item in a list
+
+Syntax:
+
+map(function, iterable)
+
+Example:
+
+nums = [1, 2, 3, 4]
+squares = list(map(lambda x: x**2, nums))
+print(squares)
+# Output: [1, 4, 9, 16]
+
+✅ Use Case: When you want to transform each element (e.g., convert, square, modify, etc.)
+
+🔸 2. filter() → Filters items based on condition
+
+Syntax:
+
+filter(function, iterable)
+
+Example:
+
+nums = [1, 2, 3, 4, 5, 6]
+even_nums = list(filter(lambda x: x % 2 == 0, nums))
+print(even_nums)
+# Output: [2, 4, 6]
+
+✅ Use Case: When you want to select only certain elements that meet a condition.
+
+🔸 3. reduce() → Reduces a list to a single value
+
+📦 Must be imported from functools.
+
+Syntax:
+
+from functools import reduce
+reduce(function, iterable)
+
+Example:
+
+from functools import reduce
+nums = [1, 2, 3, 4]
+product = reduce(lambda x, y: x * y, nums)
+print(product)
+# Output: 24
+
+✅ Use Case: When you want to combine all elements into one (sum, product, concatenation, etc.)
+
+⚙️ Combined Example
+from functools import reduce
+
+nums = [1, 2, 3, 4, 5]
+
+squares = list(map(lambda x: x**2, nums))          # [1, 4, 9, 16, 25]
+evens = list(filter(lambda x: x % 2 == 0, squares)) # [4, 16]
+sum_evens = reduce(lambda x, y: x + y, evens)       # 20
+
+print(sum_evens)
+💡 Real QA Automation Example
+test_results = [True, False, True, True, False]
+
+# Count passed tests
+count_passed = reduce(lambda x, y: x + y, map(lambda r: int(r), test_results))
+print(count_passed)   # Output: 3
+🗂️ Interview Theory Questions
+Question	Answer
+What is a lambda function?	A small anonymous function written using lambda keyword.
+Can a lambda have multiple expressions?	❌ No, only one expression is allowed.
+Difference between normal and lambda function?	Normal → defined using def, can have multiple lines. Lambda → single line, anonymous.
+When do you use map()?	When you want to apply a function to all items in an iterable.
+When do you use filter()?	When you want to filter items based on a condition.
+What does reduce() do?	Combines all items in a list into a single result (e.g., sum, product).
+Where is reduce() found?	In functools module.
+💻 Coding Interview Questions
+Q1: Square all numbers in a list
+nums = [2, 3, 4]
+print(list(map(lambda x: x**2, nums)))  # [4, 9, 16]
+Q2: Filter words longer than 4 letters
+words = ["cat", "elephant", "dog", "lion"]
+print(list(filter(lambda w: len(w) > 4, words)))  # ['elephant']
+Q3: Find product of all numbers
+from functools import reduce
+nums = [2, 3, 4]
+print(reduce(lambda a,b: a*b, nums))  # 24
+Q4: Count even numbers using reduce
+from functools import reduce
+nums = [1, 2, 3, 4, 5, 6]
+even_count = reduce(lambda x, y: x + (y%2==0), nums, 0)
+print(even_count)  # 3
